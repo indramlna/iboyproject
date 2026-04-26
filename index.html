@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indra Maulana — Web3 Community & Growth</title>
+  <meta name="description" content="Indra Maulana is a Web3 community and growth operator based in Bogor, Indonesia." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --surface: #11141b;
+      --surface-2: #151a23;
+      --ink: #f4f1ea;
+      --muted: #a9a198;
+      --soft: #746d66;
+      --line: rgba(244, 241, 234, 0.11);
+      --line-strong: rgba(244, 241, 234, 0.19);
+      --accent: #d7c08f;
+      --accent-2: #8ea7ff;
+      --accent-soft: rgba(215, 192, 143, 0.09);
+      --blue-soft: rgba(142, 167, 255, 0.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(rgba(244, 241, 234, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 241, 234, 0.025) 1px, transparent 1px),
+        radial-gradient(circle at 78% -12%, rgba(142, 167, 255, 0.14), transparent 28rem),
+        radial-gradient(circle at 18% 12%, rgba(215, 192, 143, 0.11), transparent 24rem),
+        linear-gradient(180deg, #0b0d12 0%, #090a0d 100%);
+      background-size: 42px 42px, 42px 42px, auto, auto, auto;
+      color: var(--ink);
+      line-height: 1.58;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 28px 0 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(11, 13, 18, 0.78);
+      backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 0.98rem;
+      letter-spacing: -0.02em;
+      font-weight: 650;
+      color: var(--ink);
+    }
+
+    .brand-mark {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      border-bottom: 1px solid transparent;
+      transition: 160ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
+
+    .hero {
+      padding: 76px 0 58px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 56px;
+      align-items: end;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      font-size: 0.88rem;
+      margin-bottom: 26px;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      display: inline-block;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 8vw, 7.4rem);
+      font-weight: 400;
+      letter-spacing: -0.075em;
+      line-height: 0.9;
+      max-width: 850px;
+      margin-bottom: 28px;
+    }
+
+    .intro {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+    }
+
+    .hero-side {
+      border-left: 1px solid var(--line-strong);
+      padding-left: 24px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      position: relative;
+    }
+
+    .hero-side::before {
+      content: "";
+      position: absolute;
+      left: -4px;
+      top: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 22px rgba(142, 167, 255, 0.7);
+    }
+
+    .hero-side strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.02rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      font-size: 0.92rem;
+      color: var(--ink);
+      transition: 160ms ease;
+    }
+
+    .button:hover {
+      background: var(--accent);
+      color: #0b0d12;
+    }
+
+    .button.secondary {
+      border-color: var(--line-strong);
+      color: var(--muted);
+    }
+
+    .button.secondary:hover {
+      border-color: var(--accent-2);
+      background: var(--accent-2);
+      color: #0b0d12;
+    }
+
+    section {
+      padding: 58px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 54px;
+    }
+
+    .section-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      position: sticky;
+      top: 104px;
+      align-self: start;
+    }
+
+    .section-label span {
+      display: block;
+      color: var(--ink);
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .summary-card,
+    .achievement-card,
+    .skill-card,
+    .contact-panel {
+      background: linear-gradient(180deg, rgba(17, 20, 27, 0.9) 0%, rgba(17, 20, 27, 0.64) 100%);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .summary-card {
+      border-radius: var(--radius);
+      padding: 20px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .summary-card strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      letter-spacing: -0.06em;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .summary-card p {
+      color: var(--muted);
+      margin-top: 18px;
+    }
+
+    .achievements {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .achievement-card {
+      border-radius: var(--radius);
+      padding: 22px;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .achievement-card::after {
+      content: "";
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(142, 167, 255, 0.24);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(142, 167, 255, 0.12), transparent 58%);
+    }
+
+    .achievement-card small {
+      display: block;
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .achievement-card h3 {
+      font-size: 1.15rem;
+      letter-spacing: -0.025em;
+      margin-bottom: 9px;
+      max-width: 86%;
+    }
+
+    .achievement-card p {
+      color: var(--muted);
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 28px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .period {
+      color: var(--soft);
+      font-size: 0.92rem;
+    }
+
+    .role-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
+      margin-bottom: 12px;
+    }
+
+    .role-head h3 {
+      font-size: 1.2rem;
+      letter-spacing: -0.025em;
+      font-weight: 650;
+    }
+
+    .company {
+      color: var(--muted);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .experience-item ul {
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .experience-item li + li {
+      margin-top: 6px;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .skill-card {
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .skill-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+    }
+
+    .proof-note {
+      background: linear-gradient(90deg, var(--accent-soft), var(--blue-soft));
+      border: 1px solid rgba(215, 192, 143, 0.18);
+      border-radius: var(--radius);
+      padding: 22px;
+      color: #d8cfba;
+      margin-top: 18px;
+    }
+
+    .contact-panel {
+      border-radius: calc(var(--radius) + 4px);
+      padding: 24px;
+    }
+
+    .contact-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .contact-row:first-child {
+      padding-top: 0;
+    }
+
+    .contact-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .contact-row span {
+      color: var(--muted);
+    }
+
+    .contact-row a {
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .contact-row a:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 26px 0 42px;
+      color: var(--soft);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      .topbar {
+        position: static;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 0.86rem;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-grid,
+      .section-grid,
+      .experience-item,
+      .summary,
+      .achievements,
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--line);
+        padding-top: 20px;
+      }
+
+      .hero-side::before {
+        left: 0;
+        top: -4px;
+      }
+
+      .section-label {
+        position: static;
+      }
+
+      .role-head {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .company {
+        white-space: normal;
+      }
+
+      .contact-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a href="#" class="brand">Indra Maulana</a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#achievements">Achievements</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker">Web3 Community & Growth Operator</div>
+          <h1>Building active Web3 communities through real conversations and consistent execution.</h1>
+          <p class="intro">
+            I help Web3, NFT, DeFi, and exchange-related projects manage communities, run local campaigns,
+            coordinate influencer partnerships, and keep users engaged across Telegram, Discord, and social platforms.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#contact">Contact me</a>
+            <a class="button secondary" href="#achievements">View achievements</a>
+          </div>
+        </div>
+        <aside class="hero-side">
+          <strong>Based in Bogor, Indonesia</strong>
+          6+ years across community, campaign, and market-support roles. Focused on practical execution, not inflated claims.
+        </aside>
+      </div>
+    </section>
+
+    <section aria-labelledby="overview-title">
+      <div class="wrap section-grid">
+        <div class="section-label">
+          <span id="overview-title">Overview</span>
+          A clean snapshot of the work.
+        </div>
+        <div>
+          <div class="summary">
+            <article class="summary-card">
+              <strong>50+</strong>
+              <p>Community activities, events, and campaign initiatives supported.</p>
+            </article>
+            <article class="summary-card">
+              <strong>10k+</strong>
+              <p>Community members reached across Telegram, Discord, and social platforms.</p>
+            </article>
+            <article class="summary-card">
+              <strong>10+</strong>
+              <p>Web3, NFT, exchange, and community-focused projects supported.</p>
+            </article>
+          </div>
+          <div class="proof-note">
+            Wording is intentionally grounded: supported, assisted, coordinated, and managed where appropriate.
+            No fundraising claim, no inflated ownership of outcomes, and no hard-to-verify market claims.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" aria-labelledby="achievements-title">
+      <div class="wrap section-grid">
+        <div class="section-label">
+          <span id="achievements-title">Achievements</span>
+          Selected outcomes and responsibilities that are safe to claim.
+        </div>
+
+        <div class="achievements">
+          <article class="achievement-card">
+            <small>Community Ops</small>
+            <h3>Supported 30+ local and global Web3 communities.</h3>
+            <p>Worked across Telegram, Discord, and social platforms to help maintain active conversations, user support, and community presence.</p>
+          </article>
+
+          <article class="achievement-card">
+            <small>Campaign Execution</small>
+            <h3>Helped execute 50+ campaign and community activities.</h3>
+            <p>Supported events, promotional pushes, AMA-style activities, chat campaigns, and engagement initiatives across multiple Web3 projects.</p>
+          </article>
+
+          <article class="achievement-card">
+            <small>Audience Reach</small>
+            <h3>Reached 10k+ community members across Web3 channels.</h3>
+            <p>Supported community growth and engagement across NFT, DeFi, exchange, and community-focused ecosystems.</p>
+          </article>
+
+          <article class="achievement-card">
+            <small>Local Growth</small>
+            <h3>Supported Indonesian market campaigns and influencer collaborations.</h3>
+            <p>Helped coordinate local campaigns, user education, and influencer partnership activities to support awareness and campaign reach.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-title">
+      <div class="wrap section-grid">
+        <div class="section-label">
+          <span id="experience-title">Experience</span>
+          Selected roles and responsibilities.
+        </div>
+
+        <div class="experience-list">
+          <article class="experience-item">
+            <div class="period">2023 — 2026</div>
+            <div>
+              <div class="role-head">
+                <h3>Community Growth & Market Support Specialist</h3>
+                <div class="company">MORFOLABS</div>
+              </div>
+              <ul>
+                <li>Managed community engagement and outreach across Telegram and Discord.</li>
+                <li>Supported user activity through real-time interaction and promotional chat campaigns.</li>
+                <li>Maintained consistent community presence to support user growth and retention.</li>
+                <li>Assisted with daily market monitoring, order placement, and liquidity-related execution.</li>
+                <li>Tracked market sentiment and trading activity based on assigned project guidelines.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-item">
+            <div class="period">2022</div>
+            <div>
+              <div class="role-head">
+                <h3>Community Manager</h3>
+                <div class="company">SOLEX WATCH NFT · BLOCK BANANA NFT</div>
+              </div>
+              <ul>
+                <li>Designed and organized Discord community channels with bots and moderation tools.</li>
+                <li>Managed moderators and supported daily community activity.</li>
+                <li>Created and executed marketing and community events to improve engagement.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-item">
+            <div class="period">2021</div>
+            <div>
+              <div class="role-head">
+                <h3>Community Manager</h3>
+                <div class="company">LIQUIFI FINANCE</div>
+              </div>
+              <ul>
+                <li>Built and managed Telegram community activity from the early stage.</li>
+                <li>Coordinated moderators and handled daily community communication.</li>
+                <li>Supported influencer outreach, marketing campaigns, and community initiatives.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-item">
+            <div class="period">2019</div>
+            <div>
+              <div class="role-head">
+                <h3>Community Manager</h3>
+                <div class="company">BTSE EXCHANGE</div>
+              </div>
+              <ul>
+                <li>Supported onboarding and education for Indonesian users.</li>
+                <li>Built and managed local Telegram community activity.</li>
+                <li>Planned and ran community campaigns to increase awareness and engagement in the local market.</li>
+                <li>Built partnership collaborations with local influencers to support campaign reach and user interest.</li>
+                <li>Helped bridge communication between the global team and local community members.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="experience-item">
+            <div class="period">2018</div>
+            <div>
+              <div class="role-head">
+                <h3>Graphic Design & Social Media Manager</h3>
+                <div class="company">Early Career</div>
+              </div>
+              <ul>
+                <li>Created visual content for brand awareness and social media campaigns.</li>
+                <li>Managed content posting, basic design needs, and community engagement.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="wrap section-grid">
+        <div class="section-label">
+          <span id="skills-title">Skills</span>
+          Practical areas I can support.
+        </div>
+
+        <div class="skills">
+          <article class="skill-card">
+            <h3>Community Engagement</h3>
+            <p>Daily community support across Telegram and Discord, including user guidance, conversation management, and moderation coordination.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Campaign Support</h3>
+            <p>Support for community campaigns, promotional activities, event coordination, and local-market engagement initiatives.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Partnership Outreach</h3>
+            <p>Collaboration support with local influencers, community partners, and promotional channels to improve campaign visibility.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Market Support</h3>
+            <p>Assisted with chart monitoring, order placement, sentiment tracking, and liquidity-related execution within assigned guidelines.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="wrap section-grid">
+        <div class="section-label">
+          <span id="contact-title">Contact</span>
+          Open to community, growth, campaign, moderation, and market-support opportunities.
+        </div>
+
+        <div class="contact-panel">
+          <div class="contact-row">
+            <span>Email</span>
+            <a href="mailto:indracet296@gmail.com">indracet296@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <span>WhatsApp</span>
+            <a href="https://wa.me/6281285257810" target="_blank" rel="noreferrer">+62 812 8525 7810</a>
+          </div>
+          <div class="contact-row">
+            <span>Telegram</span>
+            <a href="https://t.me/mlnaindra" target="_blank" rel="noreferrer">@mlnaindra</a>
+          </div>
+          <div class="contact-row">
+            <span>Twitter / X</span>
+            <a href="https://twitter.com/mlnaindraaa" target="_blank" rel="noreferrer">@mlnaindraaa</a>
+          </div>
+          <div class="contact-row">
+            <span>LinkedIn</span>
+            <a href="https://www.linkedin.com/in/indramlnaa/" target="_blank" rel="noreferrer">indramlnaa</a>
+          </div>
+          <div class="contact-row">
+            <span>Location</span>
+            <a href="https://www.google.com/maps/search/Bogor,+Indonesia" target="_blank" rel="noreferrer">Bogor, Indonesia</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Indra Maulana. Portfolio for Web3 community and growth opportunities.</div>
+  </footer>
+</body>
+</html>
